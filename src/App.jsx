@@ -9,7 +9,7 @@ const App = () => {
   const [board, setBoard] = useState(emptyBoard);
   const [message, setMessage] = useState("");
 
-  // Update cell value
+
   const handleChange = (row, col, value) => {
     if (/^[1-9]?$/.test(value)) {
       const newBoard = board.map((r) => [...r]);
@@ -18,9 +18,9 @@ const App = () => {
     }
   };
 
-  // Sudoku validation
+
   const validateSudoku = () => {
-    // Check rows
+
     for (let row of board) {
       const nums = row.filter(Boolean);
       if (new Set(nums).size !== nums.length) {
@@ -29,7 +29,7 @@ const App = () => {
       }
     }
 
-    // Check columns
+
     for (let col = 0; col < 9; col++) {
       const nums = [];
       for (let row = 0; row < 9; row++) {
@@ -41,7 +41,7 @@ const App = () => {
       }
     }
 
-    // Check 3x3 subgrids
+
     for (let row = 0; row < 9; row += 3) {
       for (let col = 0; col < 9; col += 3) {
         const nums = [];
@@ -68,6 +68,11 @@ const App = () => {
   return (
     <div className="app">
       <h1>Sudoku Validator</h1>
+      
+
+      <p className="description">
+        Enter numbers 1-9 and validate the board.
+      </p>
 
       <div className="board">
         {board.map((row, rowIndex) =>
@@ -84,7 +89,7 @@ const App = () => {
 
       <div className="buttons">
         <button onClick={validateSudoku}>Validate</button>
-        <button onClick={handleReset}>Reset</button>
+        <button onClick={handleReset}>Clear</button>
       </div>
 
       {message && <p className="message">{message}</p>}
